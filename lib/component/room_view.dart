@@ -1,6 +1,9 @@
+import 'package:chat/controller/chat_controller.dart';
 import 'package:chat/model/room.dart';
+import 'package:chat/screens/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 class RoomView extends StatelessWidget {
   final Room room;
@@ -10,7 +13,12 @@ class RoomView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.to(
+          () => Chat(),
+          binding: BindingsBuilder(() => ChatController()),
+        );
+      },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: Row(

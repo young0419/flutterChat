@@ -1,9 +1,10 @@
 import 'package:chat/component/room_view.dart';
-import 'package:chat/model/room.dart';
+import 'package:chat/controller/room_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
-class RoomList extends StatelessWidget {
+class RoomList extends GetView<RoomListController> {
   const RoomList({Key? key}) : super(key: key);
 
   @override
@@ -21,8 +22,12 @@ class RoomList extends StatelessWidget {
           Icon(FontAwesomeIcons.minusCircle),
         ],
       ),
-      body: ListView(
-        children: List.generate(roomList.length, (index) => RoomView(room: roomList[index])),
+      body: Obx(() => ListView.builder(
+          itemCount: controller.rooms.length,
+          itemBuilder: (BuildContext context, int index) {
+            return RoomView(room: controller.rooms[index]);
+          },
+        ),
       ),
     );
   }
